@@ -11,19 +11,21 @@
         <mat-form-field>
             <mat-label>Enter your email</mat-label>
             <input type="email" matInput placeholder="pat@example.com" [formControlName]="'email'" required />
+            <mat-error>{{getErrors(loginForm.get('email')!,'email')}}</mat-error>
             
-            @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+            <!-- @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
                 <mat-error>{{errorMessage()}}</mat-error>
             }
             @if (loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched) {
                 <mat-error>Invalid email</mat-error>
-            }
+            } -->
             <mat-icon matSuffix fontIcon="person"></mat-icon>
         
         </mat-form-field>
         <mat-form-field >
             <mat-label>Enter your password</mat-label>
             <input matInput [type]="hide() ? 'password' : 'text'" [formControlName]="'password'" />
+            <mat-error>{{getErrors(loginForm.get('password')!,'password')}}</mat-error>
             <button
             matIconButton
             matSuffix
