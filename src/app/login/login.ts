@@ -7,10 +7,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { Logo } from '../logo/logo';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink,ReactiveFormsModule,MatButtonModule,MatCardModule,MatIconModule,MatFormFieldModule,MatInputModule,MatSelectModule],
+  imports: [RouterLink,ReactiveFormsModule,MatButtonModule,MatCardModule,MatIconModule,MatFormFieldModule,MatInputModule,MatSelectModule,Logo],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
