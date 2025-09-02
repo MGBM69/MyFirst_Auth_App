@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Logo } from '../logo/logo';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../Services/auth-service';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ export class Register {
   errorMessage=signal("Email is required");
   registerForm!:FormGroup;
   #formBuilder=inject(FormBuilder);
+  #authService=inject(AuthService);
 
 
   ngOnInit(): void {
@@ -53,6 +55,14 @@ export class Register {
    
 
     return FormValidationError.getFormControlErrorMessage(ctrl,name);
+  }
+
+  async register(){
+    try{
+      await this.#authService.createUserIthEmailAndPassword(this.registerForm.value);
+
+    }catch(error){}
+     
   }
 
 }
