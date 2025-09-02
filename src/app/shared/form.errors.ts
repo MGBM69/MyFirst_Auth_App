@@ -14,6 +14,11 @@ export class FormValidationError{
         if(ctrl.hasError('minLength') && ctrl.touched){
             return `Insufficiant ${name} length`;
         }
+        if(ctrl.hasError('maxLength') && ctrl.touched){
+            return `Exceed $name} length`;
+        }
+
+
         
         
         return "";

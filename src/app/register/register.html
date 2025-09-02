@@ -1,1 +1,63 @@
-<p>register works!</p>
+
+<div class="flex w- justify-center p-3">
+    <mat-card class="w-full rounded-lg p-4 md:w-1/2 lg:w-1/3" appearance="outlined">
+  
+    <div class="flex flex-col items-center mb-4">
+        <app-logo></app-logo>    
+        <div class="mt-4 text-xl font-bold ">Register</div>
+    </div>
+    
+    <form class="flex flex-col justify-center space-y-1" [formGroup]="registerForm" (ngSubmit)="register()">
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input type="email" matInput placeholder="pat@example.com" [formControlName]="'email'" required />
+            <mat-error>{{getError(registerForm.get('email')!,'email')}}</mat-error>
+            <!-- @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+                <mat-error>{{errorMessage()}}</mat-error>
+            }
+            @if (loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched) {
+                <mat-error>Invalid email</mat-error>
+            } -->
+            <mat-icon matSuffix fontIcon="person"></mat-icon>
+        
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input type="email" matInput placeholder="pat@example.com" [formControlName]="'username'" required />
+            <mat-error>{{getError(registerForm.get('username')!,'username')}}</mat-error>
+            <!-- @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+                <mat-error>{{errorMessage()}}</mat-error>
+            }
+            @if (loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched) {
+                <mat-error>Invalid email</mat-error>
+            } -->
+            <mat-icon matSuffix fontIcon="badge"></mat-icon>
+        
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" [formControlName]="'password'" />
+            <mat-error>{{getErrors(loginForm.get('password')!,'password')}}</mat-error>
+            <button
+            matIconButton
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+            >
+            <mat-icon class="mr-4">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <div class="flex- flex-row justify-between mb-4">
+            <button type="button" matButton="elevated" [routerLink]="'/'">Already have and account</button>
+        </div>
+
+        <button matButton="filled">Register</button>
+    </form>
+  
+  
+</mat-card>
+
+
+</div>
