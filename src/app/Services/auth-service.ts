@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router';
@@ -45,6 +45,12 @@ export class AuthService {
 
   #redirect(path:string){
     this.#router.navigate([path]);
+  }
+
+  async logout(){
+    signOut(this.#auth);
+    this.#showAlert('Successfully Logout!');
+    this.#redirect('/');
   }
 
   
