@@ -9,6 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { Logo } from '../logo/logo';
 import { FormValidationError }from '../shared/form.errors';
+import { AuthService } from '../Services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class Login {
    errorMessage=signal("Email is required");
   loginForm!:FormGroup;
   #formBuilder=inject(FormBuilder);
+  #login=inject(AuthService);
 
    ngOnInit(): void {
     this.loginForm=this.#formBuilder.group({
@@ -48,6 +50,14 @@ export class Login {
 
     return FormValidationError.getFormControlErrorMessage(ctrl,name);
 
+  }
+
+   async login(){
+     
+     
+      await this.#login.signInWithEmailAndPassword(this.loginForm.value);
+
+    
   }
 
 }

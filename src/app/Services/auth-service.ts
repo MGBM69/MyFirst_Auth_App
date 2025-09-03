@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router';
@@ -51,6 +51,22 @@ export class AuthService {
     signOut(this.#auth);
     this.#showAlert('Successfully Logout!');
     this.#redirect('/');
+  }
+
+  async signInWithEmailAndPassword(iuser:Iuser){
+    
+
+    try{
+      const loggedUser= await signInWithEmailAndPassword(this.#auth,iuser.email,iuser.password);
+      this.#redirect('/home');
+      this.#showAlert("Successful Logging!")
+
+    }catch(error){
+      this.#showAlert("Error logging"+error);
+      throw new Error("Error logging in "+error);
+
+    }
+
   }
 
   

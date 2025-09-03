@@ -7,7 +7,7 @@
         <div class="mt-4 text-xl font-bold ">Login</div>
     </div>
     
-    <form class="flex flex-col justify-center space-y-1" [formGroup]="loginForm">
+    <form class="flex flex-col justify-center space-y-1" [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-form-field>
             <mat-label>Enter your email</mat-label>
             <input type="email" matInput placeholder="pat@example.com" [formControlName]="'email'" required />
