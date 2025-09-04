@@ -1,5 +1,5 @@
-import { inject, Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { inject, Injectable, signal } from '@angular/core';
+import { Auth, authState, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ export class AuthService {
   #auth =inject(Auth);
   #router=inject(Router);
   #snackBar=inject(MatSnackBar);
+  
   
 
   get user$():Observable<User| null>{
@@ -67,6 +68,18 @@ export class AuthService {
 
     }
 
+  }
+  async sendPasswordResetEmail(email:string){
+    try{
+
+      sendPasswordResetEmail(this.#auth,email);
+      this.#showAlert('Password successfullt reset!');
+      this.#router.navigate(['/']);
+
+    }catch(error){
+      this.#showAlert('Something went wrong when resetting password'+error);
+      throw new Error('Something went wrong when resetting password'+error);
+    }
   }
 
   
